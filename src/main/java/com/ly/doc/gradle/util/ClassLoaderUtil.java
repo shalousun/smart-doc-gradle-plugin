@@ -27,7 +27,7 @@ import org.gradle.api.Project;
 import org.gradle.api.artifacts.Configuration;
 import org.gradle.api.file.FileCollection;
 import org.gradle.api.plugins.JavaPlugin;
-import org.gradle.api.plugins.JavaPluginConvention;
+import org.gradle.api.plugins.JavaPluginExtension;
 import org.gradle.api.tasks.SourceSet;
 import org.gradle.api.tasks.SourceSetContainer;
 
@@ -58,7 +58,7 @@ public class ClassLoaderUtil {
             for (File file : fileSet) {
                 urls.add(file.toURI().toURL());
             }
-            SourceSetContainer ssc = project.getConvention().getPlugin(JavaPluginConvention.class).getSourceSets();
+            SourceSetContainer ssc = project.getExtensions().getByType(JavaPluginExtension.class).getSourceSets();
             FileCollection classesDir = ssc.getByName(SourceSet.MAIN_SOURCE_SET_NAME).getOutput().getClassesDirs();
             Set<File> fileSet1 = classesDir.getFiles();
             for (File file : fileSet1) {
