@@ -21,7 +21,9 @@ plugins {
 group 'com.ly.smart-doc'
 version '3.1.2'
 
-sourceCompatibility = 1.8
+java {
+    sourceCompatibility = JavaVersion.VERSION_1_8
+}
 
 repositories {
     mavenLocal() // This is to access the local Maven repository.
