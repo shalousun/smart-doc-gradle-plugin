@@ -20,7 +20,7 @@
 [smart-doc+Torna文档自动化](https://smart-doc-group.github.io/zh/guide/integrated/torna)
 ## Getting started
 ### Add plugin
-Using the plugins DSL:
+Using the plugins DSL: ![recommended](https://img.shields.io/badge/-recommended-brightgreen)
 ```
 plugins {
   id "com.github.shalousun.smart-doc" version "[最新版本]"

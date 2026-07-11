@@ -23,7 +23,7 @@ and automatically push the documents to the `Torna` enterprise-level interface d
 ![smart-doc+torna](https://raw.githubusercontent.com/smart-doc-group/smart-doc/master/images/smart-doc-torna-en.png)
 ## Getting started
 ### Add plugin
-Using the plugins DSL:
+Using the plugins DSL: ![recommended](https://img.shields.io/badge/-recommended-brightgreen)
 ```
 plugins {
   id "com.github.shalousun.smart-doc" version "[latest]"
