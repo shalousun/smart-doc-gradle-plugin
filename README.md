@@ -1,6 +1,6 @@
 <h1 align="center">Smart-Doc Gradle Plugin</h1>
 
-![gradle](https://img.shields.io/gradle-plugin-portal/v/com.ly.smart-doc)
+![gradle](https://img.shields.io/gradle-plugin-portal/v/com.github.shalousun.smart-doc)
 [![License](https://img.shields.io/badge/license-Apache%202-green.svg)](https://www.apache.org/licenses/LICENSE-2.0)
 ![number of issues closed](https://img.shields.io/github/issues-closed-raw/shalousun/smart-doc-gradle-plugin)
 ![closed pull requests](https://img.shields.io/github/issues-pr-closed-raw/shalousun/smart-doc-gradle-plugin)
@@ -26,7 +26,7 @@ and automatically push the documents to the `Torna` enterprise-level interface d
 Using the plugins DSL:
 ```
 plugins {
-  id "com.ly.smart-doc" version "[latest]"
+  id "com.github.shalousun.smart-doc" version "[latest]"
 }
 ```
 Using legacy plugin application:
@@ -38,11 +38,11 @@ buildscript {
     }
   }
   dependencies {
-    classpath "com.ly.smart-doc:smart-doc-gradle-plugin:[latest]"
+    classpath "com.github.shalousun:smart-doc-gradle-plugin:[latest]"
   }
 }
 
-apply plugin: "com.ly.smart-doc"
+apply plugin: "com.github.shalousun.smart-doc"
 ```
 ### Plugin options
 
@@ -216,4 +216,4 @@ These are only part of the companies using `smart-doc`, for reference only. If y
 ## License
 smart-doc-gradle-plugin is under the Apache 2.0 license.  See the [LICENSE](https://raw.githubusercontent.com/shalousun/smart-doc-maven-plugin/master/LICENSE) file for details.
 ## Contact
-Email： opensource@ly.com
+Email： 836575280@qq.com
