@@ -18,8 +18,8 @@ plugins {
     id 'com.gradle.plugin-publish' version '1.2.1'
 }
 
-group 'com.ly.smart-doc'
-version '3.1.2'
+group 'com.github.shalousun'
+version '4.0.0'
 
 java {
     sourceCompatibility = JavaVersion.VERSION_1_8
@@ -32,7 +32,7 @@ repositories {
 }
 
 dependencies {
-    implementation group: 'com.ly.smart-doc', name: 'smart-doc', version: '3.1.2'
+    implementation group: 'com.github.shalousun', name: 'smart-doc', version: '4.0.0'
 }
 tasks.withType(JavaCompile) {
     options.encoding = "UTF-8"
@@ -65,12 +65,12 @@ javadoc {
 
 // publish to https://plugins.gradle.org/
 gradlePlugin {
-    website = 'https://github.com/TongchengOpenSource/smart-doc-gradle-plugin'
-    vcsUrl = 'https://github.com/TongchengOpenSource/smart-doc-gradle-plugin'
+    website = 'https://github.com/smart-doc-group/smart-doc-gradle-plugin'
+    vcsUrl = 'https://github.com/smart-doc-group/smart-doc-gradle-plugin'
     plugins {
         create("smartdocPlugin") {
-            id = 'com.ly.smart-doc'
-            implementationClass = 'com.ly.doc.gradle.plugin.SmartDocPlugin'
+            id = 'com.github.shalousun.smart-doc'
+            implementationClass = 'io.github.smartdoc.gradle.plugin.SmartDocPlugin'
             displayName = 'smart-doc gradle plugin'
             description = 'smart-doc gradle plugin'
             tags.set(['smart-doc', 'gradle-plugin'])

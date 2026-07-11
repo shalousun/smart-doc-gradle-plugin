@@ -1,6 +1,6 @@
 <h1 align="center"><a href="https://github.com/shalousun/smart-doc-gradle-plugin" target="_blank">Smart-Doc Gradle Plugin</a></h1>
 
-![gradle](https://img.shields.io/gradle-plugin-portal/v/com.ly.smart-doc)
+![gradle](https://img.shields.io/gradle-plugin-portal/v/com.github.shalousun.smart-doc)
 [![License](https://img.shields.io/badge/license-Apache%202-green.svg)](https://www.apache.org/licenses/LICENSE-2.0)
 ![closed pull requests](https://img.shields.io/github/issues-pr-closed-raw/shalousun/smart-doc-gradle-plugin)
 ![java version](https://img.shields.io/badge/JAVA-1.8+-green.svg)
@@ -11,7 +11,7 @@
 启动`smart-doc`扫描代码分析生成接口文档。可以直接运行`gradle`命令
 或者是`IDE`中点击`smart-doc-gradle-plugin`预设好的`task`即可生成接口文档。
 `smart-doc-gradle-plugin`底层完全依赖于官方开源的`smart-doc`解析库.
-[关于smart-doc](https://github.com/TongchengOpenSource/smart-doc)
+[关于smart-doc](https://gitee.com/smart-doc-team/smart-doc)
 ## Best Practice
 `smart-doc` + [Torna](http://torna.cn) 组成行业领先的文档生成和管理解决方案，使用`smart-doc`无侵入完成`Java`源代码分析和提取注释生成`API`文档，自动将文档推送到`Torna`企业级接口文档管理平台。
 
@@ -23,7 +23,7 @@
 Using the plugins DSL:
 ```
 plugins {
-  id "com.ly.smart-doc" version "[最新版本]"
+  id "com.github.shalousun.smart-doc" version "[最新版本]"
 }
 ```
 Using legacy plugin application:
@@ -35,10 +35,10 @@ buildscript {
         mavenCentral()
     }
     dependencies {
-        classpath 'com.ly.smart-doc:smart-doc-gradle-plugin:[最新版本]'
+        classpath 'com.github.shalousun:smart-doc-gradle-plugin:[最新版本]'
     }
 }
-apply(plugin = "com.ly.smart-doc")
+apply(plugin = "com.github.shalousun.smart-doc")
 ```
 ### Plugin options
 
@@ -86,7 +86,7 @@ smartdoc {
 
 ```
 subprojects{
-    apply plugin: 'com.ly.smart-doc'
+    apply plugin: 'com.github.shalousun.smart-doc'
     smartdoc {
         //
         configFile = file("src/main/resources/smart-doc.json")
