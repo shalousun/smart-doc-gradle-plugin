@@ -36,10 +36,6 @@ import org.gradle.api.logging.Logger;
 public class JavadocMarkdownTask extends DocBaseTask {
     @Override
     public void executeAction(ApiConfig apiConfig, JavaProjectBuilder javaProjectBuilder, Logger logger) {
-        try {
-            JavadocMarkdownBuilder.buildApiDoc(apiConfig, javaProjectBuilder);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        executeSafely(apiConfig, () -> JavadocMarkdownBuilder.buildApiDoc(apiConfig, javaProjectBuilder), logger);
     }
 }

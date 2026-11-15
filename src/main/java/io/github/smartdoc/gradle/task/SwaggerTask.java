@@ -36,10 +36,6 @@ public class SwaggerTask extends DocBaseTask {
 
     @Override
     public void executeAction(ApiConfig apiConfig, JavaProjectBuilder javaProjectBuilder, Logger logger) {
-        try {
-            SwaggerBuilder.buildOpenApi(apiConfig, javaProjectBuilder);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        executeSafely(apiConfig, () -> SwaggerBuilder.buildOpenApi(apiConfig, javaProjectBuilder), logger);
     }
 }

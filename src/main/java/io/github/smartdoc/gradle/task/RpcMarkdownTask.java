@@ -34,10 +34,6 @@ public class RpcMarkdownTask extends DocBaseTask {
 
     @Override
     public void executeAction(ApiConfig apiConfig, JavaProjectBuilder javaProjectBuilder, Logger logger) {
-        try {
-            RpcMarkdownBuilder.buildApiDoc(apiConfig, javaProjectBuilder);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        executeSafely(apiConfig, () -> RpcMarkdownBuilder.buildApiDoc(apiConfig, javaProjectBuilder), logger);
     }
 }

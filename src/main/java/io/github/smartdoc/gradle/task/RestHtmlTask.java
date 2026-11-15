@@ -34,10 +34,6 @@ public class RestHtmlTask extends DocBaseTask {
 
     @Override
     public void executeAction(ApiConfig apiConfig, JavaProjectBuilder javaProjectBuilder, Logger logger) {
-        try {
-            HtmlApiDocBuilder.buildApiDoc(apiConfig, javaProjectBuilder);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        executeSafely(apiConfig, () -> HtmlApiDocBuilder.buildApiDoc(apiConfig, javaProjectBuilder), logger);
     }
 }

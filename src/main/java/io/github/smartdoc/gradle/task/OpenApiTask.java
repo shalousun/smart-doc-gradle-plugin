@@ -36,10 +36,6 @@ public class OpenApiTask extends DocBaseTask {
 
     @Override
     public void executeAction(ApiConfig apiConfig, JavaProjectBuilder javaProjectBuilder, Logger logger) {
-        try {
-            OpenApiBuilder.buildOpenApi(apiConfig, javaProjectBuilder);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        executeSafely(apiConfig, () -> OpenApiBuilder.buildOpenApi(apiConfig, javaProjectBuilder), logger);
     }
 }

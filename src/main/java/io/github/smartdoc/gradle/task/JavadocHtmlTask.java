@@ -36,10 +36,6 @@ import org.gradle.api.logging.Logger;
 public class JavadocHtmlTask extends DocBaseTask {
     @Override
     public void executeAction(ApiConfig apiConfig, JavaProjectBuilder javaProjectBuilder, Logger logger) {
-        try {
-            JavadocHtmlBuilder.buildApiDoc(apiConfig, javaProjectBuilder);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        executeSafely(apiConfig, () -> JavadocHtmlBuilder.buildApiDoc(apiConfig, javaProjectBuilder), logger);
     }
 }

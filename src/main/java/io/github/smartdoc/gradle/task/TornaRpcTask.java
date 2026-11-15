@@ -33,10 +33,6 @@ import org.gradle.api.logging.Logger;
 public class TornaRpcTask extends DocBaseTask {
     @Override
     public void executeAction(ApiConfig apiConfig, JavaProjectBuilder javaProjectBuilder, Logger logger) {
-        try {
-            RpcTornaBuilder.buildApiDoc(apiConfig, javaProjectBuilder);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        executeSafely(apiConfig, () -> RpcTornaBuilder.buildApiDoc(apiConfig, javaProjectBuilder), logger);
     }
 }

@@ -34,10 +34,6 @@ public class WordTask extends DocBaseTask {
 
     @Override
     public void executeAction(ApiConfig apiConfig, JavaProjectBuilder javaProjectBuilder, Logger logger) {
-        try {
-            WordDocBuilder.buildApiDoc(apiConfig, javaProjectBuilder);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        executeSafely(apiConfig, () -> WordDocBuilder.buildApiDoc(apiConfig, javaProjectBuilder), logger);
     }
 }

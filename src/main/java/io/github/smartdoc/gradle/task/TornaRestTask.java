@@ -34,10 +34,6 @@ public class TornaRestTask extends DocBaseTask {
 
     @Override
     public void executeAction(ApiConfig apiConfig, JavaProjectBuilder javaProjectBuilder, Logger logger) {
-        try {
-            TornaBuilder.buildApiDoc(apiConfig, javaProjectBuilder);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        executeSafely(apiConfig, () -> TornaBuilder.buildApiDoc(apiConfig, javaProjectBuilder), logger);
     }
 }

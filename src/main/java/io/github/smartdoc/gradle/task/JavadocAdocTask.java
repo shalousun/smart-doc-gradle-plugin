@@ -37,11 +37,7 @@ public class JavadocAdocTask extends DocBaseTask {
 
     @Override
     public void executeAction(ApiConfig apiConfig, JavaProjectBuilder javaProjectBuilder, Logger logger) {
-        try {
-            JavadocAdocBuilder.buildApiDoc(apiConfig, javaProjectBuilder);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        executeSafely(apiConfig, () -> JavadocAdocBuilder.buildApiDoc(apiConfig, javaProjectBuilder), logger);
     }
 
 }

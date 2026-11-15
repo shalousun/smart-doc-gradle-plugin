@@ -37,10 +37,6 @@ public class GrpcAdocTask extends DocBaseTask {
 
     @Override
     public void executeAction(ApiConfig apiConfig, JavaProjectBuilder javaProjectBuilder, Logger logger) {
-        try {
-            GrpcAsciidocBuilder.buildApiDoc(apiConfig, javaProjectBuilder);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        executeSafely(apiConfig, () -> GrpcAsciidocBuilder.buildApiDoc(apiConfig, javaProjectBuilder), logger);
     }
 }

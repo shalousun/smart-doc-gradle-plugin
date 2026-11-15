@@ -37,10 +37,6 @@ public class GrpcMarkdownTask extends DocBaseTask {
 
     @Override
     public void executeAction(ApiConfig apiConfig, JavaProjectBuilder javaProjectBuilder, Logger logger) {
-        try {
-            GrpcMarkdownBuilder.buildApiDoc(apiConfig, javaProjectBuilder);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        executeSafely(apiConfig, () -> GrpcMarkdownBuilder.buildApiDoc(apiConfig, javaProjectBuilder), logger);
     }
 }

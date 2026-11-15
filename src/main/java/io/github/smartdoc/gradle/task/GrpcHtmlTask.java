@@ -37,10 +37,6 @@ public class GrpcHtmlTask extends DocBaseTask {
 
     @Override
     public void executeAction(ApiConfig apiConfig, JavaProjectBuilder javaProjectBuilder, Logger logger) {
-        try {
-            GrpcHtmlBuilder.buildApiDoc(apiConfig, javaProjectBuilder);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        executeSafely(apiConfig, () -> GrpcHtmlBuilder.buildApiDoc(apiConfig, javaProjectBuilder), logger);
     }
 }

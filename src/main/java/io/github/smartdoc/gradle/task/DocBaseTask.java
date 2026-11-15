@@ -25,6 +25,7 @@ package io.github.smartdoc.gradle.task;
 import com.power.common.constants.Charset;
 import com.power.common.util.CollectionUtil;
 import com.power.common.util.RegexUtil;
+import io.github.smartdoc.exception.UnsupportedGoalFrameworkException;
 import io.github.smartdoc.helper.JavaProjectBuilderHelper;
 import io.github.smartdoc.model.ApiConfig;
 import io.github.smartdoc.gradle.constant.GlobalConstants;
@@ -38,6 +39,7 @@ import com.power.common.util.StringUtil;
 import com.thoughtworks.qdox.JavaProjectBuilder;
 import com.thoughtworks.qdox.library.SortedClassLibraryBuilder;
 import org.gradle.api.DefaultTask;
+import org.gradle.api.GradleException;
 import org.gradle.api.Project;
 import org.gradle.api.artifacts.Configuration;
 import org.gradle.api.artifacts.ResolvedArtifact;
@@ -80,6 +82,47 @@ public abstract class DocBaseTask extends DefaultTask {
      * @param logger             Logger
      */
     public abstract void executeAction(ApiConfig apiConfig, JavaProjectBuilder javaProjectBuilder, Logger logger);
+
+    /**
+     * Runs a documentation generation action and decides whether a failure must break the build.
+     * <p>
+     * A framework/goal mismatch is a configuration error: retrying can never succeed and the task
+     * silently produces no documentation, so it always fails the build. Any other failure keeps
+     * the historical behaviour and only fails when {@code isStrict} is set.
+     *
+     * @param apiConfig api configuration of the current task
+     * @param action    documentation generation action to run
+     * @param logger    logger of the current task
+     */
+    protected void executeSafely(ApiConfig apiConfig, DocAction action, Logger logger) {
+        try {
+            action.run();
+        } catch (Throwable e) {
+            logger.error(e.getMessage(), e);
+            // A JVM error leaves the build in an unknown state, so it can never be ignored.
+            if (e instanceof Error) {
+                throw (Error) e;
+            }
+            if (e instanceof UnsupportedGoalFrameworkException || apiConfig.isStrict()) {
+                throw new GradleException(e.getMessage(), e);
+            }
+        }
+    }
+
+    /**
+     * A documentation generation action that may fail.
+     */
+    @FunctionalInterface
+    protected interface DocAction {
+
+        /**
+         * Runs the action.
+         *
+         * @throws Exception when the documentation generation fails
+         */
+        void run() throws Exception;
+
+    }
 
     /**
      * Task action

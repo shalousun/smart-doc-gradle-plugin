@@ -34,10 +34,6 @@ public class RpcHtmlTask extends DocBaseTask {
 
     @Override
     public void executeAction(ApiConfig apiConfig, JavaProjectBuilder javaProjectBuilder, Logger logger) {
-        try {
-            RpcHtmlBuilder.buildApiDoc(apiConfig, javaProjectBuilder);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        executeSafely(apiConfig, () -> RpcHtmlBuilder.buildApiDoc(apiConfig, javaProjectBuilder), logger);
     }
 }

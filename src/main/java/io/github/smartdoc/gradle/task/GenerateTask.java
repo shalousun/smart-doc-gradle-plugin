@@ -27,7 +27,6 @@ import io.github.smartdoc.gradle.constant.GlobalConstants;
 import io.github.smartdoc.gradle.extension.SmartDocPluginExtension;
 import io.github.smartdoc.model.ApiConfig;
 import com.thoughtworks.qdox.JavaProjectBuilder;
-import org.gradle.api.GradleException;
 import org.gradle.api.Project;
 import org.gradle.api.logging.Logger;
 
@@ -44,15 +43,7 @@ public class GenerateTask extends DocBaseTask {
     @Override
     public void executeAction(ApiConfig apiConfig, JavaProjectBuilder javaProjectBuilder, Logger logger) {
         String formats = this.resolveFormats();
-        try {
-            DocGenerator.generate(apiConfig, javaProjectBuilder, formats);
-        }
-        catch (Throwable e) {
-            logger.error(e.getMessage(), e);
-            if (apiConfig.isStrict()) {
-                throw new GradleException(e.getMessage(), e);
-            }
-        }
+        executeSafely(apiConfig, () -> DocGenerator.generate(apiConfig, javaProjectBuilder, formats), logger);
     }
 
     private String resolveFormats() {

@@ -36,10 +36,6 @@ import org.gradle.api.logging.Logger;
 public class WebSocketAdocTask extends DocBaseTask {
     @Override
     public void executeAction(ApiConfig apiConfig, JavaProjectBuilder javaProjectBuilder, Logger logger) {
-        try {
-            WebSocketAsciidocBuilder.buildApiDoc(apiConfig, javaProjectBuilder);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        executeSafely(apiConfig, () -> WebSocketAsciidocBuilder.buildApiDoc(apiConfig, javaProjectBuilder), logger);
     }
 }
